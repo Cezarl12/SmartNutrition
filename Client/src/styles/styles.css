@@ -1,0 +1,15 @@
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
+@use "@angular/material" as mat;
+@use "tailwindcss" as *;
+
+body {
+  font-family: "Roboto", sans-serif;
+}
+:root {
+  @include mat.snack-bar-overrides(
+    (
+      button-color: orange,
+      container-color: red
+    )
+  );
+}

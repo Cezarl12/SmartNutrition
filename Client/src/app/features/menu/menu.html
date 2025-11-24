@@ -1,0 +1,60 @@
+<div class="bg-white/90 flex w-7/10 m-auto mt-40 px-20 py-10 rounded-2xl shadow-xl">
+    <div class="flex flex-col w-full">
+        <div class="flex flex-row items-center justify-between">
+            <div class="flex flex-col">
+                <div class="flex flex-row items-center gap-x-5">
+                    <h1 class="text-3xl text-gray-700 font-medium ">Planul tău alimentar</h1>
+                    <i (click)="generateOther()" class="text-3xl fa-solid fa-rotate text-gray-700 cursor-pointer transition-all duration-300 
+              hover:text-blue-300 hover:rotate-90"></i>
+                </div>
+                <div class="flex flex-row gap-x-3 items-center mt-4">
+                    <div class="w-15 h-15">
+                        <app-pie-chart [data]="getPieChartDataTotal()"></app-pie-chart>
+                    </div>
+                    <p class="text-xl text-gray-700"><span class="font-bold">{{generatorService.totalActualKcal()}} 
+                    </span> kcal  / <span class="font-bold">{{generatorService.totalTargetKcal()}} </span> kcal</p>
+                </div>
+            </div>
+            <div>
+                <button  (click)="saveDaily()" class="w-full rounded-full h-10 bg-linear-to-l from-green-100 via-teal-100 to-cyan-100 text-lg xl:text-xl 
+                font-medium shadow-2xs py-6 px-2 flex items-center justify-center text-gray-700 cursor-pointer border-2 border-gray-300 
+                hover:ring-1 hover:outline-none hover:border-blue-200 hover:ring-green-300
+                disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:ring-0">Save to DailyLog</button>
+            </div>
+        </div>
+    <hr class="w-9/10 m-auto mt-7 text-gray-300">
+    @for(meal of menuSource();track meal;let mealIndex = $index;){
+       <div class="flex flex-col mt-10 ">
+            <h2 class="text-2xl text-gray-700 font-medium ">{{meal.mealName}}</h2>
+            <div class="flex flex-row gap-x-3 items-center mt-4">
+                <div class="w-15 h-15">
+                     <app-pie-chart [data]="getPieChartDataForMeals(meal.recipes)"></app-pie-chart>
+                </div>
+                <p class="text-xl text-gray-700"><span class="font-bold">{{meal.actualKcal}} </span> kcal</p>
+            </div>
+            @for (recipe of meal.recipes; track recipe;let recipeIndex = $index;) {
+                <div
+                class="flex gap-x-10  flex-row justify-between mt-5 p-2 hover:shadow-xl hover:rounded-2xl border border-transparent
+                transition-all duration-300 ease-in-out hover:scale-[1.02] hover:ring-2  hover:border-green-200  hover:ring-blue-200">
+                    <div class="flex flex-row gap-x-7 group">
+                        <img  [routerLink]="['/food',recipe.id]"  [src]="'foods/' + recipe.imageUrl" alt="recipe" class="h-20 w-25 shadow-xl transition-transform 
+                        duration-300 group-hover:scale-105 cursor-pointer">
+                        <div  class="flex flex-col justify-between py-2">
+                            <p [routerLink]="['/food',recipe.id]"  class="text-xl text-gray-700 font-medium transition-colors duration-300 
+                            group-hover:underline group-hover:text-blue-300 cursor-pointer">{{recipe.name}} - {{recipe.kcal}} kcal per porție</p>
+                            <p class="text-base text-gray-700">Porția medie <span class="font-semibold">{{recipe.standardServingSizeInGrams}}g</span></p>
+                         </div>
+                    </div>
+                    <div class="w-1/6 flex flex-col items-center justify-center">
+                      <label class="text-base flex items-center justify-center text-gray-700 font-medium mb-1">Cantitate consumată (g)</label>
+                      <input type="number" 
+                             [(ngModel)]="quantities[getRecipeIndex(mealIndex, recipeIndex)]"
+                             class="shadow-xs  w-1/2 pl-4 text-lg text-gray-700 bg-white py-2 px-3 rounded-full border-2 border-gray-300
+                                    focus:outline-none focus:ring-1 focus:border-blue-300 focus:ring-green-300">
+                    </div>
+                </div>
+                <hr class="mt-7 w-9/10 m-auto text-gray-300">
+            }
+       </div>
+    }
+</div>  

@@ -1,0 +1,187 @@
+<form [formGroup]="profileForm" class="w-6/10 m-auto" (ngSubmit)="onSubmit()">
+    <h1 class="text-2xl text-gray-800 font-medium mb-5">Calculeză-ți necesarul caloric! </h1>
+    <div class="flex flex-col gap-y-2"> 
+        
+        <div class="flex flex-col">
+            <div class="flex items-center relative mb-4">
+                <div class="absolute top-50% left-2 bg-linear-to-l rounded-full h-10 w-10 xl:h-12 xl:w-12 flex items-center justify-center"
+                    [ngClass]="{
+                        'from-green-100 via-teal-100 to-cyan-100':!age || !((age.dirty || age.touched) && age.invalid), 
+                        'from-orange-200 via-pink-100 to-red-200':age && (age.dirty || age.touched) && age.invalid
+                    }">
+                    <i class="fa-solid fa-birthday-cake text-gray-700 text-lg xl:text-xl"></i>
+                </div>
+                <input type="number" formControlName="age" placeholder="Age" class="shadow-xs w-full bg-white py-3 px-3 rounded-full border-2 border-gray-300 pl-15 xl:pl-17 text-base xl:text-lg text-gray-500
+                        focus:outline-none focus:ring-2 focus:shadow-md"
+                    [ngClass]="{
+                        'focus:border-green-200 focus:ring-blue-200': !age || !((age.dirty || age.touched) && age.invalid), 
+                        'border-red-300 focus:border-red-300 focus:ring-orange-200':age && (age.dirty || age.touched) && age.invalid
+                    }">
+            </div>
+            <div class="flex">
+                @if (age && age.invalid && (age.dirty || age.touched)) {
+                    <div class="text-red-400 text-base pl-5 -mt-4">
+                        @if (age.hasError('required')) { <p>Vârsta este obligatorie.</p> }
+                    </div>
+                }
+            </div>
+        </div>
+    
+        <div class="flex flex-col">
+            <div class="group flex items-center relative mb-4">
+                <div class="absolute top-50% left-2 bg-linear-to-l rounded-full h-10 w-10 xl:h-12 xl:w-12 flex items-center justify-center"
+                       [ngClass]="{
+                            'from-green-100 via-teal-100 to-cyan-100':!sex || !((sex.dirty || sex.touched) && sex.invalid), 
+                            'from-orange-200 via-pink-100 to-red-200':sex && (sex.dirty || sex.touched) && sex.invalid
+                       }">
+                    <i class="fa-solid fa-venus-mars text-gray-700 text-lg xl:text-xl"></i>
+                </div>
+                <select formControlName="sex" class="appearance-none shadow-xs w-full bg-white py-3 px-3 rounded-full border-2 border-gray-300 pl-15 xl:pl-17 text-base xl:text-lg text-gray-500
+                        focus:outline-none focus:ring-2 focus:shadow-md"
+                       [ngClass]="{
+                            'focus:border-green-200 focus:ring-blue-200': !sex || !((sex.dirty || sex.touched) && sex.invalid), 
+                            'border-red-300 focus:border-red-300 focus:ring-orange-200':sex && (sex.dirty || sex.touched) && sex.invalid
+                       }">
+                    <option [ngValue]="null" disabled>Select Sex</option>
+                    @for (opt of sexOptions; track opt.id) {
+                        <option  [ngValue]="opt.id">{{ opt.name }}</option>
+                    }
+                </select>
+                <i class="fa-solid fa-chevron-down absolute right-5 top-1/2 -translate-y-1/2 text-gray-400 text-sm 
+                          transition-transform duration-200 group-focus-within:rotate-180"></i>
+            </div>
+            <div class="flex">
+                @if (sex && sex.invalid && (sex.dirty || sex.touched)) {
+                    <div class="text-red-400 text-base pl-5 -mt-4">
+                        @if (sex.hasError('required')) { <p>Sexul este obligatoriu.</p> }
+                    </div>
+                }
+            </div>
+        </div>
+
+        <div class="flex flex-col">
+            <div class="flex items-center relative mb-4">
+                <div class="absolute top-50% left-2 bg-linear-to-l rounded-full h-10 w-10 xl:h-12 xl:w-12 flex items-center justify-center"
+                    [ngClass]="{
+                        'from-green-100 via-teal-100 to-cyan-100':!height || !((height.dirty || height.touched) && height.invalid), 
+                        'from-orange-200 via-pink-100 to-red-200':height && (height.dirty || height.touched) && height.invalid
+                    }">
+                    <i class="fa-solid fa-arrows-up-down  text-gray-700 text-lg xl:text-xl"></i>
+                    
+                </div>
+                <input type="number" formControlName="height" placeholder="Height (cm)" class="shadow-xs w-full bg-white py-3 px-3 rounded-full border-2 border-gray-300 pl-15 xl:pl-17 text-base xl:text-lg text-gray-500
+                        focus:outline-none focus:ring-2 focus:shadow-md"
+                    [ngClass]="{
+                        'focus:border-green-200 focus:ring-blue-200': !height || !((height.dirty || height.touched) && height.invalid), 
+                        'border-red-300 focus:border-red-300 focus:ring-orange-200':height && (height.dirty || height.touched) && height.invalid
+                    }">
+            </div>
+            <div class="flex">
+                @if (height && height.invalid && (height.dirty || height.touched)) {
+                    <div class="text-red-400 text-base pl-5 -mt-4">
+                        @if (height.hasError('required')) { <p>Înălțimea este obligatorie.</p> }
+                    </div>
+                }
+            </div>
+        </div>
+    
+        <div class="flex flex-col">
+            <div class="flex items-center relative mb-4">
+                <div class="absolute top-50% left-2 bg-linear-to-l rounded-full h-10 w-10 xl:h-12 xl:w-12 flex items-center justify-center"
+                    [ngClass]="{
+                        'from-green-100 via-teal-100 to-cyan-100':!weight || !((weight.dirty || weight.touched) && weight.invalid), 
+                        'from-orange-200 via-pink-100 to-red-200':weight && (weight.dirty || weight.touched) && weight.invalid
+                    }">
+                    <i class="fa-solid fa-weight-scale text-gray-700 text-lg xl:text-xl"></i> </div>
+                <input type="number" formControlName="weight" placeholder="Weight (kg)" class="shadow-xs w-full bg-white py-3 px-3 rounded-full border-2 border-gray-300 pl-15 xl:pl-17 text-base xl:text-lg text-gray-500
+                        focus:outline-none focus:ring-2 focus:shadow-md"
+                    [ngClass]="{
+                        'focus:border-green-200 focus:ring-blue-200': !weight || !((weight.dirty || weight.touched) && weight.invalid), 
+                        'border-red-300 focus:border-red-300 focus:ring-orange-200':weight && (weight.dirty || weight.touched) && weight.invalid
+                    }">
+            </div>
+            <div class="flex">
+                @if (weight && weight.invalid && (weight.dirty || weight.touched)) {
+                    <div class="text-red-400 text-base pl-5 -mt-4">
+                        @if (weight.hasError('required')) { <p>Greutatea este obligatorie.</p> }
+                        @if (weight.hasError('min')) { <p>Minim 30 kg.</p> }
+                    </div>
+                }
+            </div>
+        </div>
+    
+        <div class="flex flex-col">
+            <div class="group flex items-center relative mb-4">
+                <div class="absolute top-50% left-2 bg-linear-to-l rounded-full h-10 w-10 xl:h-12 xl:w-12 flex items-center justify-center"
+                       [ngClass]="{
+                            'from-green-100 via-teal-100 to-cyan-100':!activityLevel || !((activityLevel.dirty || activityLevel.touched) && activityLevel.invalid), 
+                            'from-orange-200 via-pink-100 to-red-200':activityLevel && (activityLevel.dirty || activityLevel.touched) && activityLevel.invalid
+                       }">
+                    <i class="fa-solid fa-person-running text-gray-700 text-lg xl:text-xl"></i>
+                </div>
+                <select formControlName="activityLevel" class="appearance-none shadow-xs w-full bg-white py-3 px-3 rounded-full border-2 border-gray-300 pl-15 xl:pl-17 text-base xl:text-lg text-gray-500
+                        focus:outline-none focus:ring-2 focus:shadow-md"
+                       [ngClass]="{
+                            'focus:border-green-200 focus:ring-blue-200': !activityLevel || !((activityLevel.dirty || activityLevel.touched) && activityLevel.invalid), 
+                            'border-red-300 focus:border-red-300 focus:ring-orange-200':activityLevel && (activityLevel.dirty || activityLevel.touched) && activityLevel.invalid
+                       }">
+                    <option [ngValue]="null" disabled>Nivel de activitate</option>
+                    @for (opt of activityOptions; track opt.id) {
+                        <option  [ngValue]="opt.id">{{ opt.name }}</option>
+                    }
+                </select>
+                <i class="fa-solid fa-chevron-down absolute right-5 top-1/2 -translate-y-1/2 text-gray-400 text-sm
+                          transition-transform duration-200 group-focus-within:rotate-180"></i>
+            </div>
+            <div class="flex">
+                @if (activityLevel && activityLevel.invalid && (activityLevel.dirty || activityLevel.touched)) {
+                    <div class="text-red-400 text-base pl-5 -mt-4">
+                        @if (activityLevel.hasError('required')) { <p>Nivelul de activitate e obligatoriu.</p> }
+                    </div>
+                }
+            </div>
+        </div>
+    
+        <div class="flex flex-col mb-4"> 
+            <div class="group flex items-center relative mb-4">
+                <div class="absolute top-50% left-2 bg-linear-to-l rounded-full h-10 w-10 xl:h-12 xl:w-12 flex items-center justify-center"
+                       [ngClass]="{
+                            'from-green-100 via-teal-100 to-cyan-100':!goal || !((goal.dirty || goal.touched) && goal.invalid), 
+                            'from-orange-200 via-pink-100 to-red-200':goal && (goal.dirty || goal.touched) && goal.invalid
+                       }">
+                    <i class="fa-solid fa-bullseye text-gray-700 text-lg xl:text-xl"></i>
+                </div>
+                <select formControlName="goal" class="appearance-none shadow-xs w-full bg-white py-3 px-3 rounded-full border-2 border-gray-300 pl-15 xl:pl-17 text-base xl:text-lg text-gray-500
+                        focus:outline-none focus:ring-2 focus:shadow-md"
+                       [ngClass]="{
+                            'focus:border-green-200 focus:ring-blue-200': !goal || !((goal.dirty || goal.touched) && goal.invalid), 
+                            'border-red-300 focus:border-red-300 focus:ring-orange-200':goal && (goal.dirty || goal.touched) && goal.invalid
+                       }">
+                    <option [ngValue]="null" disabled>Obiectiv</option>
+                    @for (opt of goalOptions; track opt.id) {
+                        <option  [ngValue]="opt.id">{{ opt.name }}</option>
+                    }
+                </select>
+                <i class="fa-solid fa-chevron-down absolute right-5 top-1/2 -translate-y-1/2 text-gray-400 text-sm
+                          transition-transform duration-200 group-focus-within:rotate-180"></i>
+            </div>
+            <div class="flex">
+                @if (goal && goal.invalid && (goal.dirty || goal.touched)) {
+                    <div class="text-red-400 text-base pl-5 -mt-4">
+                        @if (goal.hasError('required')) { <p>Scopul este obligatoriu.</p> }
+                    </div>
+                }
+            </div>
+        </div>
+    </div> 
+    
+    <div class="flex mt-3 w-full">
+        <button [disabled]="profileForm.invalid" type="submit" 
+                class="w-full rounded-full h-10 bg-linear-to-l from-green-100 via-teal-100 to-cyan-100 text-lg xl:text-xl 
+                       font-medium shadow-2xs py-6 flex items-center justify-center text-gray-700 cursor-pointer border-2 border-gray-300 
+                       hover:ring-1 hover:outline-none hover:border-blue-200 hover:ring-green-300
+                       disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:ring-0">
+            Calculate
+        </button>
+   </div>
+</form>

@@ -1,0 +1,169 @@
+<div class="w-full flex items-center justify-between">
+    <form [formGroup]="profileForm" class="w-8/10 m-auto" (ngSubmit)="onSubmit()">
+        <h1 class="text-2xl text-gray-800 font-medium mb-5 ">Datele tale</h1>
+        <div class="flex flex-col lg:flex-row gap-x-5 ">
+            <div class="flex flex-col flex-1">
+                <div class="flex items-center relative mb-4">
+                    <div class="absolute top-50% left-2  bg-linear-to-l rounded-full h-10 w-10 xl:h-12 xl:w-12 flex items-center justify-center"
+                        [ngClass]="{
+                            'from-green-100 via-teal-100 to-cyan-100':!firstName || !((firstName.dirty || firstName.touched) && firstName.invalid),   
+                            'from-orange-200 via-pink-100 to-red-200':firstName && (firstName.dirty || firstName.touched) && firstName.invalid
+                        }">
+                        <i class="fa-solid fa-user text-gray-700 text-lg xl:text-xl"></i>
+                    </div>
+                    <input type="text" formControlName="firstName"  placeholder="First Name" class=" shadow-xs w-full bg-white py-3 px-3 rounded-full border-2 border-gray-300  pl-15 xl:pl-17 text-base  xl:text-lg text-gray-500
+                            focus:outline-none focus:ring-2 focus:shadow-md"
+                        [ngClass]="{
+                            'focus:border-green-200  focus:ring-blue-200': !firstName || !((firstName.dirty || firstName.touched) && firstName.invalid), 
+                            'border-red-300  focus:border-red-300  focus:ring-orange-200':firstName && (firstName.dirty || firstName.touched) && firstName.invalid
+                        }">
+                </div>
+                <div class="flex">
+                    @if (firstName && firstName.invalid && (firstName.dirty || firstName.touched)) {
+                        <div class="text-red-400 text-base pl-5 -mt-4">
+                            @if (firstName.hasError('required')) {
+                                <p>Prenumele este obligatoriu.</p>
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="flex flex-col flex-1">
+                <div class="flex items-center relative mb-4">
+                    <div class="absolute top-50% left-2  bg-linear-to-l rounded-full h-10 w-10 xl:h-12 xl:w-12 flex items-center justify-center"
+                        [ngClass]="{
+                            'from-green-100 via-teal-100 to-cyan-100':!lastName || !((lastName.dirty || lastName.touched) && lastName.invalid),   
+                            'from-orange-200 via-pink-100 to-red-200':lastName && (lastName.dirty || lastName.touched) && lastName.invalid
+                        }">
+                        <i class="fa-solid fa-user text-gray-700 text-lg xl:text-xl"></i>
+                    </div>
+                     <input type="text" formControlName="lastName" placeholder="Last Name" class=" shadow-xs w-full bg-white py-3 px-3 rounded-full border-2 border-gray-300 pl-15 xl:pl-17 text-base xl:text-lg text-gray-500
+                            focus:outline-none focus:ring-2 focus:ring-blue-200 focus:shadow-md focus:border-green-200"
+                        [ngClass]="{
+                            'focus:border-green-200  focus:ring-blue-200': !lastName || !((lastName.dirty || lastName.touched) && lastName.invalid), 
+                            'border-red-300  focus:border-red-300  focus:ring-orange-200':lastName && (lastName.dirty || lastName.touched) && lastName.invalid
+                        }">
+                </div>
+                <div class="flex">
+                    @if (lastName && lastName.invalid && (lastName.dirty || lastName.touched)) {
+                        <div class="text-red-400 text-base pl-5 -mt-4">
+                            @if (lastName.hasError('required')) {
+                                <p>Numele este obligatoriu.</p>
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="flex w-auto items-center relative mb-8">
+            <div class="absolute top-50% left-2  bg-linear-to-l rounded-full h-10 w-10 xl:h-12 xl:w-12 flex items-center justify-center"
+                [ngClass]="{
+                    'from-green-100 via-teal-100 to-cyan-100':!email || !((email.dirty || email.touched) && email.invalid),   
+                    'from-orange-200 via-pink-100 to-red-200':email && (email.dirty || email.touched) && email.invalid
+                }">
+                <i class="fa-solid fa-envelope text-gray-700 text-lg xl:text-xl"></i>
+            </div>
+            <input type="email" formControlName="email"  placeholder="Email address" class=" shadow-xs w-full bg-white py-3 px-3 rounded-full border-2 border-gray-300 pl-15 xl:pl-20 text-base xl:text-lg text-gray-500
+                    focus:outline-none focus:ring-2  focus:shadow-md"
+                [ngClass]="{
+                    'focus:border-green-200  focus:ring-blue-200': !email || !((email.dirty || email.touched) && email.invalid), 
+                    'border-red-300  focus:border-red-300  focus:ring-orange-200':email && (email.dirty || email.touched) && email.invalid
+                }">
+        </div>
+        @if (email && email.invalid && (email.dirty || email.touched)) {
+            <div class="text-red-400 text-base pl-5 -mt-4">
+                @if (email.hasError('required')) {
+                    <p>Adresa de email este obligatorie.</p>
+                }
+                @if (email.hasError('email')) {
+                    <p>Adresa de email nu este validă.</p>
+                }
+            </div>
+        }
+
+        <h2 class="text-2xl text-gray-800 font-medium mb-5">Prefetințele tale</h2>
+        <div class="flex flex-col lg:flex-row gap-x-5 mb-8">
+            
+            <div class="group flex items-center relative mb-4 flex-1">
+                <div class="absolute top-50% left-2 bg-linear-to-l rounded-full from-green-100 via-teal-100 to-cyan-100 h-10 w-10 xl:h-12 xl:w-12 flex items-center justify-center">
+                    <i class="fa-solid fa-utensils text-gray-700 text-lg xl:text-xl"></i>
+                </div>
+                <select formControlName="preferences" 
+                        class="appearance-none shadow-xs w-full bg-white py-3 px-3 rounded-full border-2 border-gray-300 pl-15 xl:pl-17 text-base xl:text-lg text-gray-500
+                               focus:outline-none focus:ring-2 focus:shadow-md focus:border-green-200 focus:ring-blue-200">
+                    <option [ngValue]="null" disabled >Alege prefeința ta</option>
+                    @for (pref of preferenceOptions; track pref) {
+                        <option [ngValue]="pref.id">{{ pref.name }}</option>
+                    }
+                </select>
+                <i class="fa-solid fa-chevron-down absolute right-5 top-1/2 -translate-y-1/2 text-gray-400 text-sm 
+                          transition-transform duration-200 group-focus-within:rotate-180"></i>
+            </div>
+
+            <div class="group flex items-center relative mb-4 flex-1">
+                <div class="absolute top-50% left-2 bg-linear-to-l rounded-full h-10 w-10 xl:h-12 xl:w-12 flex items-center justify-center
+                                from-green-100 via-teal-100 to-cyan-100">
+                    <i class="fa-solid fa-list-ol text-gray-700 text-lg xl:text-xl"></i>
+                </div>
+                <select formControlName="numberOfMeals" 
+                        class="appearance-none shadow-xs w-full bg-white py-3 px-3 rounded-full border-2 border-gray-300 pl-15 xl:pl-17 text-base xl:text-lg text-gray-500
+                               focus:outline-none focus:ring-2 focus:shadow-md focus:border-green-200 focus:ring-blue-200">
+                    <option [ngValue]="null" disabled>Selectează numărul de mese</option>
+                    @for (num of mealOptions; track num) {
+                        <option [ngValue]="num">{{ num }} pe zi</option>
+                    }
+                </select>
+                <i class="fa-solid fa-chevron-down absolute right-5 top-1/2 -translate-y-1/2 text-gray-400 text-sm
+                          transition-transform duration-200 group-focus-within:rotate-180"></i>
+            </div>
+        </div>
+
+        <h2 class="text-2xl text-gray-800 font-medium mb-2">Targetul tău</h2>
+        @if(!account()?.target || account()?.target?.dailyKcal==0){
+            <p class="text-base text-gray-800 mb-5">Dacă nu ai calculat încă
+            <span class="text-blue-400 hover:text-blue-500 hover:cursor-pointer" routerLink="/profile/calories-calculator">apasă aici</span></p>
+        }@else {
+            <div class="flex flex-col gap-y-2">
+                <div class="flex">
+                    <p class="text-xl text-gray-700"><span class="font-semibold" >{{account()?.target?.dailyKcal}}</span> kcal pe zi</p>
+                </div>
+                <div class="flex flex-row gap-x-2 items-center">
+                    <div class="rounded-full bg-yellow-500 h-3 w-3"></div>
+                    <p class="text-xl text-gray-700"><span class="font-semibold" >{{account()?.target?.dailyCarbs}}g</span> Carbohridați</p>
+                </div>
+                <div class="flex flex-row gap-x-2 items-center">
+                    <div class="rounded-full bg-purple-500 h-3 w-3"></div>
+                    <p class="text-xl text-gray-700"><span class="font-semibold" >{{account()?.target?.dailyProtein}}g</span> Proteine</p>
+                </div>
+                <div class="flex flex-row gap-x-2 items-center">
+                    <div class="rounded-full bg-blue-400 h-3 w-3"></div>
+                    <p class="text-xl text-gray-700"><span class="font-semibold" >{{account()?.target?.dailyFat}}g</span> Grăsimi</p>
+                </div>
+            </div>
+        }
+        
+        <div class="flex ml-auto mt-4 w-3/10">
+            <button [disabled]="profileForm.invalid" type="submit"  class="w-full rounded-full h-10 bg-linear-to-l from-green-100 via-teal-100 to-cyan-100 text-lg xl:text-xl 
+                    font-medium shadow-2xs py-6 flex items-center justify-center text-gray-700 cursor-pointer border-2 border-gray-300 
+                    hover:ring-1 hover:outline-none hover:border-blue-200 hover:ring-green-300
+                    disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:ring-0">Update Profile</button>
+        </div>
+    </form>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

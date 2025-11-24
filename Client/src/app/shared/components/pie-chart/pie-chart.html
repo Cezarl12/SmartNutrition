@@ -1,0 +1,15 @@
+@if (data) {
+  <div class="h-full w-full">
+    <canvas baseChart
+          [data]="{
+            labels: pieChartLabels,
+            datasets: [{ 
+              data: data, 
+              backgroundColor: pieChartColors,
+            }]
+          }"
+          [type]="'pie'"
+          [options]="pieChartOptions">
+  </canvas>
+  </div>
+}

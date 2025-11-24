@@ -1,0 +1,82 @@
+<div class="bg-white/70 flex w-7/10 m-auto mt-40 px-20 py-10 rounded-2xl  justify-center flex-col shadow-2xl">
+    <div class="flex flex-row gap-x-10 text-shadow-gray-800">
+            <div class="flex flex-col w-6/10">
+                <h1 class="text-3xl font-medium">Meals <span class="text-2xl font-semibold">from {{dailyLog()?.date |date:'d MMMM'}}</span></h1>
+                <div class="flex flex-row space-x-2 items-center mt-4">
+                    <div class="w-15 h-15">
+                        <app-pie-chart [data]="getPieChartDataTotal()"></app-pie-chart>
+                    </div>
+                    <p class="text-lg">{{dailyLog()?.totalKcal}} kcal</p>
+                    <div class="ml-auto">
+                         <i (click)="remove()" class="self-end fa-solid fa-trash text-gray-800 hover:text-red-400 text-3xl cursor-pointer transition-colors duration-200"></i>
+                    </div>
+                </div>
+
+                @for(meal of dailyLog()?.meals;track meal){
+                    <div class="flex flex-col bg-white/90 border border-gray-200 w-full p-5 mt-10 rounded-2xl shadow-xl">
+                        <h2 class="text-2xl font-medium">{{meal.mealName}}</h2>
+                        <p class="text-lg"><span class="font-semibold">{{meal.totalCalories}}</span> kcal</p>
+
+                        <div class="flex flex-col gap-y-4 mt-2">
+                                @for(recipe of meal.recipes;track recipe){
+                                    <div class="flex flex-row group gap-x-5">
+                                         <img [routerLink]="['/food', recipe.foodId]"  [src]="'foods/' + recipe.imageUrl" alt="" class="h-auto w-35 transition-transform 
+                                            duration-300 group-hover:scale-105 cursor-pointer ">
+
+                                         <div class="flex flex-col justify-center gap-y-3">
+                                             <p [routerLink]="['/food', recipe.foodId]" class="text-2xl font-medium   group-hover:underline group-hover:text-blue-300 cursor-pointer">
+                                                {{recipe.name}}</p>
+                                            <p class="text-lg">Cantitate consumată:<span class="font-medium"> {{recipe.quantityConsumedInGrams}} g</span></p>                                                
+                                         </div> 
+                                    </div>
+                        }
+                    </div>
+                    </div>
+                }
+            </div>
+
+            <div class="flex flex-col  w-4/10 items-center h-auto">
+                <h2 class="text-3xl font-bold">Macronutrienți</h2>
+                <div class="w-70 h-60 mt-5">
+                    <app-pie-chart [data]="getPieChartDataTotal()"></app-pie-chart>
+                </div>
+                <div class="flex flex-row justify-between w-8/10 mt-20 text-xl text-gray-700 ">
+                    
+                    <div class="flex flex-col gap-y-2">
+                        <p class="font-bold">Rezultate</p>
+                          <p>Calorii</p>
+                        <div class="flex flex-row gap-x-2 items-center">
+                            <div class="rounded-full bg-purple-500 h-3 w-3"></div>
+                            <p>Proteine</p>
+                        </div>
+                         <div class="flex flex-row gap-x-2 items-center">
+                            <div class="rounded-full bg-yellow-500 h-3 w-3"></div>
+                            <p>Carbohridați</p>
+                        </div>
+                         <div class="flex flex-row gap-x-2 items-center">
+                            <div class="rounded-full bg-blue-400 h-3 w-3"></div>
+                            <p > Grăsimi</p>
+                        </div> 
+                    </div>
+
+                    <div class="flex flex-col gap-y-2 ">
+                        <p class="font-bold">Total</p>
+                        <p>{{dailyLog()?.totalKcal}}</p>
+                        <p>{{dailyLog()?.totalProtein}}g</p>
+                        <p>{{dailyLog()?.totalCarbs}}g</p>
+                        <p>{{dailyLog()?.totalFat}}g</p>
+                    </div>
+
+                    <div class="flex flex-col gap-y-2 ">
+                        <p class="font-bold">Target</p>
+                        <p>{{account()?.target?.dailyKcal}}</p>
+                        <p>{{account()?.target?.dailyProtein}}g</p>
+                        <p>{{account()?.target?.dailyCarbs}}g</p>
+                        <p>{{account()?.target?.dailyFat}}g</p>
+
+                    </div>
+
+                </div>
+            </div>
+    </div>
+</div>

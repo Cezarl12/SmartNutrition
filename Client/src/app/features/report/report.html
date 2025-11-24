@@ -1,0 +1,78 @@
+<div class="bg-white/90 w-8/10 m-auto mt-40 px-10 py-10 rounded-2xl shadow-xl flex flex-col gap-10 mb-20">
+
+    <div class="flex flex-row md:flex-row justify-between items-center ">
+        <h1 class="text-3xl text-gray-800 font-medium">Analiză Nutrițională <span
+                class="font-bold text-2xl">{{dateFinish()|date:'d MMMM'}} - {{dateStart()|date:'d MMMM'}}</span></h1>
+    </div>
+
+    <hr class="w-9/10 m-auto text-gray-400">
+
+    @if (summary(); as s) {
+
+    <div class="flex flex-row justify-between gap-x-5">
+
+        <div
+            class="w-1/4 bg-orange-50 border border-orange-100 p-6 rounded-xl flex flex-col items-center shadow-sm hover:shadow-md transition-all">
+            <div class="flex items-center gap-2 mb-2">
+                <i class="fa-solid fa-fire text-orange-500"></i>
+                <p class="text-gray-600 font-medium text-sm uppercase tracking-wide">Medie Calorii</p>
+            </div>
+            <p class="text-4xl font-bold text-orange-600 my-2">{{ s.averageKcalConsumed }}</p>
+
+            <div class="text-sm flex flex-col items-center gap-1">
+                <span class="text-gray-500">Target: {{ s.targetKcal }}</span>
+                <span class="font-bold px-3 py-1 rounded-full text-xs"
+                    [ngClass]="s.calorieDeficitOrSurplus > 0 ? 'bg-red-100 text-red-400' : 'bg-green-100 text-green-400'">
+                    {{ s.calorieDeficitOrSurplus > 0 ? '+' : ''}}{{ s.calorieDeficitOrSurplus }}
+                </span>
+            </div>
+        </div>
+
+        <div
+            class="w-1/4 bg-purple-50 border border-purple-100 p-6 rounded-xl flex flex-col items-center shadow-sm hover:shadow-lg transition-all">
+            <p class="text-gray-600 font-medium text-sm uppercase mb-2">Medie Proteine</p>
+            <p class="text-4xl font-bold text-purple-600 my-2">{{ s.averageProteinConsumed }}g</p>
+            <p class="text-sm text-gray-500">Target: {{ s.targetProtein }}g</p>
+        </div>
+
+        <div
+            class="w-1/4 bg-yellow-50 border border-yellow-100 p-6 rounded-xl flex flex-col items-center shadow-sm hover:shadow-lg transition-all">
+            <p class="text-gray-600 font-medium text-sm uppercase mb-2">Medie Carbohidrați</p>
+            <p class="text-4xl font-bold text-yellow-600 my-2">{{ s.averageCarbsConsumed }}g</p>
+            <p class="text-sm text-gray-500">Target: {{ s.targetCarbs }}g</p>
+        </div>
+
+        <div
+            class="w-1/4 bg-blue-50 border border-blue-100 p-6 rounded-xl flex flex-col items-center shadow-sm hover:shadow-lg transition-all">
+            <p class="text-gray-600 font-medium text-sm uppercase mb-2">Medie Grăsimi</p>
+            <p class="text-4xl font-bold text-blue-600 my-2">{{ s.averageFatConsumed }}g</p>
+            <p class="text-sm text-gray-500">Target: {{ s.targetFat }}g</p>
+        </div>
+
+    </div>
+
+    <div class=" bg-white border border-gray-200 rounded-xl p-6 shadow-md w-full mt-4">
+        <div class="flex items-center justify-between mb-6">
+            <h2 class="text-xl font-semibold text-gray-700">Evoluția Caloriilor Zilnice</h2>
+        </div>
+
+    
+    <div class="h-80 w-full">
+        <canvas baseChart 
+             [data]="lineChartData" 
+             [options]="lineChartOptions" 
+             [type]="'line'">
+        </canvas>
+    </div>
+    
+
+    </div>
+
+    } @else {
+    <div class="py-20 text-center">
+        <i class="fa-solid fa-chart-line text-4xl text-gray-300 mb-4 animate-pulse"></i>
+        <p class="text-gray-500 text-xl">Se încarcă datele...</p>
+    </div>
+    }
+
+</div>
