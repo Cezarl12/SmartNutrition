@@ -1,92 +1,142 @@
-<h1 class="text-3xl text-gray-700 font-medium text-center mt-40">Crază-ți planul alimentar acum!</h1>
+<h1 class="text-3xl text-gray-700 font-medium text-center mt-40">
+  Crază-ți planul alimentar acum!
+</h1>
 <div class="bg-white/90 w-7/10 m-auto h-auto rounded-2xl flex-col mt-10">
-    <h2 class="text-2xl text-gray-700 font-medium text-center pt-5">Preferințe alimentare</h2>
-    <div class="flex flex-row justify-between space-x-5 px-10 py-5">
-        
-        <div class="flex flex-col justify-center items-center border-2 border-gray-300 bg-orange-50/80 w-1/4 h-40 shadow-lg 
-                    cursor-pointer transition duration-300 ease-in-out
-                    hover:bg-orange-100/80 hover:border-orange-300 hover:shadow-xl hover:scale-105" 
-             [ngClass]="{'bg-orange-100/80 border-orange-300 shadow-xl scale-105': selectedDiet === 'Everything'}" 
-             (click)="selectDiet('Everything')">
-            <img src="preferences/everything.png" alt="everything" class="h-25 w-25">
-            <h2 class="text-xl text-gray-700">Standard</h2>
-        </div>
-        
-        <div class="flex flex-col justify-center items-center border-2 border-gray-300 bg-yellow-50/80 w-1/4 h-40  shadow-lg
-                    cursor-pointer transition duration-300 ease-in-out
-                    hover:bg-yellow-100/80 hover:border-yellow-300 hover:shadow-xl hover:scale-105"
-             [ngClass]="{'bg-yellow-100/80 border-yellow-300 shadow-xl scale-105': selectedDiet === 'Keto'}" 
-             (click)="selectDiet('Keto')">
-            <img src="preferences/keto.png" alt="keto" class="h-25 w-25">
-            <h2 class="text-xl text-gray-700">Keto</h2>
-        </div>
-
-        <div class="flex flex-col justify-center items-center border-2 border-gray-300 bg-violet-50/80 w-1/4 h-40 shadow-lg
-                    cursor-pointer transition duration-300 ease-in-out
-                    hover:bg-violet-100/80 hover:border-violet-300 hover:shadow-xl hover:scale-105"
-             [ngClass]="{'bg-violet-100/80 border-violet-300 shadow-xl scale-105': selectedDiet === 'Vegan'}" 
-             (click)="selectDiet('Vegan')">
-            <img src="preferences/vegan.png" alt="vegan" class="h-25 w-25">
-            <h2 class="text-xl text-gray-700">Vegan</h2>
-        </div>
-        
-        <div class="flex flex-col justify-center items-center border-2 border-gray-300 bg-green-50/80 w-1/4 h-40 shadow-lg
-                    cursor-pointer transition duration-300 ease-in-out
-                    hover:bg-green-100/80 hover:border-green-300  hover:shadow-xl hover:scale-105"
-              [ngClass]="{'bg-green-100/80 border-green-300 shadow-xl scale-105': selectedDiet === 'Vegetarian'}" 
-             (click)="selectDiet('Vegetarian')">
-            <img src="preferences/vegetarian.png" alt="vegetarian" class="h-25 w-25">
-            <h2 class="text-xl text-gray-700">Vegetarian</h2>
-        </div>
-        
-    </div>
-   
-    <div class="flex flex-row items-baseline gap-x-3 text-xl text-gray-700 font-medium justify-center mt-3">
-        <p>Vreau să mânânc în</p>  
-        <select 
-        class="bg-transparent border  border-gray-400 rounded-lg px-2 py-1 text-2xl text-gray-700 font-medium
-                    focus:outline-none focus:border-blue-200 focus:ring-0 cursor-pointer"
-                (change)="onMealChange($event)">
-            
-            <option  [ngValue]="null" disabled selected>...</option>
-            
-            @for (num of mealOptions; track num) {
-            <option class="text-xl" [ngValue]="num" [selected]="num === selectedMeals">
-                {{ num }}
-            </option>
-            }
-        </select>
-        <p>mese</p>
-    </div>
-      @if(account()?.target?.dailyCarbs ===0 ){
-            <p class="text-base text-center text-gray-800 mb-5">Dacă nu ai calculat încă
-            <span class="text-blue-400 hover:text-blue-500 hover:cursor-pointer" routerLink="/profile/calories-calculator">apasă aici</span></p>
-        }@else {
-            <h2 class="text-2xl text-center font-semibold text-gray-800 mt-5">Targetul tău</h2>
-            <div class="flex flex-col gap-y-2 justify-center items-center mt-2">
-                <div class="flex">
-                    <p class="text-xl text-gray-700"><span class="font-semibold" >{{account()?.target?.dailyKcal}}</span> kcal pe zi</p>
-                </div>
-                <div class="flex flex-row gap-x-2 items-center">
-                    <div class="rounded-full bg-yellow-500 h-3 w-3"></div>
-                    <p class="text-xl text-gray-700"><span class="font-semibold" >{{account()?.target?.dailyCarbs}}g</span> Carbohridați</p>
-                </div>
-                <div class="flex flex-row gap-x-2 items-center">
-                    <div class="rounded-full bg-purple-500 h-3 w-3"></div>
-                    <p class="text-xl text-gray-700"><span class="font-semibold" >{{account()?.target?.dailyProtein}}g</span> Proteine</p>
-                </div>
-                <div class="flex flex-row gap-x-2 items-center">
-                    <div class="rounded-full bg-blue-400 h-3 w-3"></div>
-                    <p class="text-xl text-gray-700"><span class="font-semibold" >{{account()?.target?.dailyFat}}g</span> Grăsimi</p>
-                </div>
-            </div>
-        }
-
-    <div class="flex items-center justify-center mt-10 pb-5">
-        <button (click)="generate()"  class="w-2/10 self-center rounded-full h-10 bg-linear-to-l from-green-100 via-teal-100 to-cyan-100 text-lg xl:text-xl 
-        font-medium shadow-2xs py-6 flex items-center justify-center text-gray-700 cursor-pointer border-2 border-gray-300 
-        hover:ring-1 hover:outline-none hover:border-blue-200 hover:ring-green-300
-        disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:ring-0">Generate</button>
+  <h2 class="text-2xl text-gray-700 font-medium text-center pt-5">
+    Preferințe alimentare
+  </h2>
+  <div class="flex flex-row justify-between space-x-5 px-10 py-5">
+    <div
+      class="flex flex-col justify-center items-center border-2 border-gray-300 bg-orange-50/80 w-1/4 h-40 shadow-lg cursor-pointer transition duration-300 ease-in-out hover:bg-orange-100/80 hover:border-orange-300 hover:shadow-xl hover:scale-105"
+      [ngClass]="{
+        'bg-orange-100/80 border-orange-300 shadow-xl scale-105':
+          selectedDiet === 'Everything'
+      }"
+      (click)="selectDiet('Everything')"
+    >
+      <img
+        src="preferences/everything.png"
+        alt="everything"
+        class="h-25 w-25"
+      />
+      <h2 class="text-xl text-gray-700">Standard</h2>
     </div>
 
+    <div
+      class="flex flex-col justify-center items-center border-2 border-gray-300 bg-yellow-50/80 w-1/4 h-40 shadow-lg cursor-pointer transition duration-300 ease-in-out hover:bg-yellow-100/80 hover:border-yellow-300 hover:shadow-xl hover:scale-105"
+      [ngClass]="{
+        'bg-yellow-100/80 border-yellow-300 shadow-xl scale-105':
+          selectedDiet === 'Keto'
+      }"
+      (click)="selectDiet('Keto')"
+    >
+      <img src="preferences/keto.png" alt="keto" class="h-25 w-25" />
+      <h2 class="text-xl text-gray-700">Keto</h2>
+    </div>
+
+    <div
+      class="flex flex-col justify-center items-center border-2 border-gray-300 bg-violet-50/80 w-1/4 h-40 shadow-lg cursor-pointer transition duration-300 ease-in-out hover:bg-violet-100/80 hover:border-violet-300 hover:shadow-xl hover:scale-105"
+      [ngClass]="{
+        'bg-violet-100/80 border-violet-300 shadow-xl scale-105':
+          selectedDiet === 'Vegan'
+      }"
+      (click)="selectDiet('Vegan')"
+    >
+      <img src="preferences/vegan.png" alt="vegan" class="h-25 w-25" />
+      <h2 class="text-xl text-gray-700">Vegan</h2>
+    </div>
+
+    <div
+      class="flex flex-col justify-center items-center border-2 border-gray-300 bg-green-50/80 w-1/4 h-40 shadow-lg cursor-pointer transition duration-300 ease-in-out hover:bg-green-100/80 hover:border-green-300 hover:shadow-xl hover:scale-105"
+      [ngClass]="{
+        'bg-green-100/80 border-green-300 shadow-xl scale-105':
+          selectedDiet === 'Vegetarian'
+      }"
+      (click)="selectDiet('Vegetarian')"
+    >
+      <img
+        src="preferences/vegetarian.png"
+        alt="vegetarian"
+        class="h-25 w-25"
+      />
+      <h2 class="text-xl text-gray-700">Vegetarian</h2>
+    </div>
+  </div>
+
+  <div
+    class="flex flex-row items-baseline gap-x-3 text-xl text-gray-700 font-medium justify-center mt-3"
+  >
+    <p>Vreau să mânânc în</p>
+    <select
+      class="bg-transparent border border-gray-400 rounded-lg px-2 py-1 text-2xl text-gray-700 font-medium focus:outline-none focus:border-blue-200 focus:ring-0 cursor-pointer"
+      (change)="onMealChange($event)"
+    >
+      <option [ngValue]="null" disabled selected>...</option>
+
+      @for (num of mealOptions; track num) {
+      <option
+        class="text-xl"
+        [ngValue]="num"
+        [selected]="num === selectedMeals"
+      >
+        {{ num }}
+      </option>
+      }
+    </select>
+    <p>mese</p>
+  </div>
+  @if(account()?.target?.dailyCarbs === 0 || !account()){
+  <p class="text-base text-center text-gray-800 mb-5">
+    Dacă nu ai calculat încă
+    <span
+      class="text-blue-400 hover:text-blue-500 hover:cursor-pointer"
+      routerLink="/profile/calories-calculator"
+      >apasă aici</span
+    >
+  </p>
+  }@else {
+  <h2 class="text-2xl text-center font-semibold text-gray-800 mt-5">
+    Targetul tău
+  </h2>
+  <div class="flex flex-col gap-y-2 justify-center items-center mt-2">
+    <div class="flex">
+      <p class="text-xl text-gray-700">
+        <span class="font-semibold">{{ account()?.target?.dailyKcal }}</span>
+        kcal pe zi
+      </p>
+    </div>
+    <div class="flex flex-row gap-x-2 items-center">
+      <div class="rounded-full bg-yellow-500 h-3 w-3"></div>
+      <p class="text-xl text-gray-700">
+        <span class="font-semibold">{{ account()?.target?.dailyCarbs }}g</span>
+        Carbohridați
+      </p>
+    </div>
+    <div class="flex flex-row gap-x-2 items-center">
+      <div class="rounded-full bg-purple-500 h-3 w-3"></div>
+      <p class="text-xl text-gray-700">
+        <span class="font-semibold"
+          >{{ account()?.target?.dailyProtein }}g</span
+        >
+        Proteine
+      </p>
+    </div>
+    <div class="flex flex-row gap-x-2 items-center">
+      <div class="rounded-full bg-blue-400 h-3 w-3"></div>
+      <p class="text-xl text-gray-700">
+        <span class="font-semibold">{{ account()?.target?.dailyFat }}g</span>
+        Grăsimi
+      </p>
+    </div>
+  </div>
+  }
+
+  <div class="flex items-center justify-center mt-10 pb-5">
+    <button
+      (click)="generate()"
+      class="w-2/10 self-center rounded-full h-10 bg-linear-to-l from-green-100 via-teal-100 to-cyan-100 text-lg xl:text-xl font-medium shadow-2xs py-6 flex items-center justify-center text-gray-700 cursor-pointer border-2 border-gray-300 hover:ring-1 hover:outline-none hover:border-blue-200 hover:ring-green-300 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:ring-0"
+    >
+      Generate
+    </button>
+  </div>
 </div>

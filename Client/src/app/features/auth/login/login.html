@@ -1,94 +1,117 @@
-<div class="flex-col w-3/4 md:w-2/4 lg:w-1/3 2xl:w-1/4 m-auto mt-40">
-    <div class="px-2 flex items-center gap-x-5 mb-3 xl:mb-5">
-        <img src="logo.png" alt="logo" class="h-15 w-15 xl:h-20 xl:w-20">
-        <h1 class="text-2xl xl:text-4xl font-bold text-gray-800">LogIn</h1>
-        </div>
+<div class="flex-col w-3/4 md:w-2/4 lg:w-1/3 2xl:w-1/4 m-auto mt-30">
+  <div class="px-2 flex items-center gap-x-5 mb-3 xl:mb-5">
+    <img src="logo.png" alt="logo" class="h-15 w-15 xl:h-20 xl:w-20" />
+    <h1 class="text-2xl xl:text-4xl font-bold text-gray-800">LogIn</h1>
+  </div>
 
-    <div class="px-2 mb-5 xl:mb-8">
-        <p class="text-left text-gray-500 text-sm md:text-base font-medium">
-            Bine ai revenit!</p>
-    </div>
+  <div class="px-2 mb-2 xl:mb-8">
+    <p class="text-left text-gray-500 text-sm md:text-base font-medium">
+      Bine ai revenit!
+    </p>
+  </div>
 
-    <div class="px-2 w-full">
-        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-            <div class="flex items-center relative mb-4">
-                <div class="absolute top-50% left-2  bg-linear-to-l rounded-full h-10 w-10 xl:h-12 xl:w-12 flex items-center justify-center"
-                    [ngClass]="{
+  <div class="px-2 w-full">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="flex items-center relative mb-4">
+        <div
+          class="absolute top-50% left-2 bg-linear-to-l rounded-full h-10 w-10 xl:h-12 xl:w-12 flex items-center justify-center"
+          [ngClass]="{
                         'from-green-100 via-teal-100 to-cyan-100':!email || !((email.dirty || email.touched) && email.invalid),  
                         'from-orange-200 via-pink-100 to-red-200':email && (email.dirty || email.touched) && email.invalid,
-                    }">
-                    <i class="fa-solid fa-envelope text-gray-700 text-lg xl:text-xl"></i>
-                    </div>
-                <input type="email" formControlName="email" placeholder="Email address"
-                    class=" shadow-xs w-full bg-white py-3 px-3 rounded-full border-2 border-gray-300 pl-15 xl:pl-20 text-base xl:text-lg text-gray-500
-                    focus:outline-none focus:shadow-xs focus:ring-2" [ngClass]="{
+                    }"
+        >
+          <i class="fa-solid fa-envelope text-gray-700 text-lg xl:text-xl"></i>
+        </div>
+        <input
+          type="email"
+          formControlName="email"
+          placeholder="Email address"
+          class="shadow-xs w-full bg-white py-3 px-3 rounded-full border-2 border-gray-300 pl-15 xl:pl-20 text-base xl:text-lg text-gray-500 focus:outline-none focus:shadow-xs focus:ring-2"
+          [ngClass]="{
                         'focus:border-green-200  focus:ring-blue-200': !email || !((email.dirty || email.touched) && email.invalid),  
                         'border-red-300  focus:border-red-300  focus:ring-orange-200':email && (email.dirty || email.touched) && email.invalid,
-                    }">
-            </div>
-            @if (email && email.invalid && (email.dirty || email.touched)) {
-            <div class="text-red-400 text-base pl-5 -mt-4 ">
-                @if (email.hasError('required')) {
-                <p>Adresa de email este obligatorie.</p>
-                }
-                @if (email.hasError('email')) {
-                <p>Adresa de email nu este validă.</p>
-                }
-            </div>
-            }
+                    }"
+        />
+      </div>
+      @if (email && email.invalid && (email.dirty || email.touched)) {
+      <div class="text-red-400 text-base pl-5 -mt-4">
+        @if (email.hasError('required')) {
+        <p>Adresa de email este obligatorie.</p>
+        } @if (email.hasError('email')) {
+        <p>Adresa de email nu este validă.</p>
+        }
+      </div>
+      }
 
-
-            <div class="flex items-center relative mb-4">
-                <div class="absolute top-50% left-2 rounded-full bg-linear-to-l from-green-100 via-teal-100 to-cyan-100 h-10 w-10 xl:h-12 xl:w-12 flex items-center justify-center"
-                    [ngClass]="{
+      <div class="flex items-center relative mb-4">
+        <div
+          class="absolute top-50% left-2 rounded-full bg-linear-to-l from-green-100 via-teal-100 to-cyan-100 h-10 w-10 xl:h-12 xl:w-12 flex items-center justify-center"
+          [ngClass]="{
                          'from-green-100 via-teal-100 to-cyan-100':!password || !((password.dirty || password.touched) && password.invalid),  
                          'from-orange-200 via-pink-100 to-red-200':password && (password.dirty || password.touched) && password.invalid,
-                    }">
-                    <i class="fa-solid fa-lock text-gray-700 text-lg xl:text-xl"></i>
-                    </div>
-                <input [type]="showPassword ? 'text' : 'password'" formControlName="password" placeholder="Password"
-                    class="w-full  bg-white py-3 px-3 rounded-full border-2 border-gray-300 pl-15 xl:pl-20 text-base xl:text-lg text-gray-500
-                    focus:outline-none focus:ring-2 focus:shadow-md " [ngClass]="{
+                    }"
+        >
+          <i class="fa-solid fa-lock text-gray-700 text-lg xl:text-xl"></i>
+        </div>
+        <input
+          [type]="showPassword ? 'text' : 'password'"
+          formControlName="password"
+          placeholder="Password"
+          class="w-full bg-white py-3 px-3 rounded-full border-2 border-gray-300 pl-15 xl:pl-20 text-base xl:text-lg text-gray-500 focus:outline-none focus:ring-2 focus:shadow-md"
+          [ngClass]="{
                          'focus:border-green-200  focus:ring-blue-200':!password || !((password.dirty || password.touched) && password.invalid),  
                          'border-red-300  focus:border-red-300  focus:ring-orange-200':password && (password.dirty || password.touched) && password.invalid,
-                    }">
-                <div class="absolute top-50% right-2 rounded-full  h-10 w-10 xl:h-12 xl:w-12 flex items-center justify-center cursor-pointer"
-                    (click)="togglePasswordVisibility()">
-                    @if(showPassword){
-                    <i class="fa-solid fa-eye-slash text-gray-700 text-lg xl:text-xl"></i>
-                    }@else {
-                    <i class="fa-solid fa-eye text-gray-700 text-lg xl:text-xl"></i>
-                    }
-                </div>
-            </div>
-            @if (password && password.invalid && (password.dirty || password.touched)) {
-            <div class="text-red-400 text-base pl-5 -mt-4">
-                @if (password.hasError('required')) {
-                <p>Parola este obligatorie.</p>
-                }
-            </div>
-            }
+                    }"
+        />
+        <div
+          class="absolute top-50% right-2 rounded-full h-10 w-10 xl:h-12 xl:w-12 flex items-center justify-center cursor-pointer"
+          (click)="togglePasswordVisibility()"
+        >
+          @if(showPassword){
+          <i class="fa-solid fa-eye-slash text-gray-700 text-lg xl:text-xl"></i>
+          }@else {
+          <i class="fa-solid fa-eye text-gray-700 text-lg xl:text-xl"></i>
+          }
+        </div>
+      </div>
+      @if (password && password.invalid && (password.dirty || password.touched))
+      {
+      <div class="text-red-400 text-base pl-5 -mt-4">
+        @if (password.hasError('required')) {
+        <p>Parola este obligatorie.</p>
+        }
+      </div>
+      }
 
-            <button [disabled]="loginForm.invalid" type="submit" class="w-full rounded-full h-10 bg-linear-to-l from-green-100 via-teal-100 to-cyan-100 text-lg xl:text-xl
-                font-medium shadow-2xs py-6 flex items-center justify-center text-gray-700 cursor-pointer border-2 border-gray-300 
-                hover:ring-1 hover:outline-none hover:border-blue-200 hover:ring-green-300
-                disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:ring-0">Sign in</button>
+      <button
+        [disabled]="loginForm.invalid"
+        type="submit"
+        class="w-full rounded-full h-10 bg-linear-to-l from-green-100 via-teal-100 to-cyan-100 text-lg xl:text-xl font-medium shadow-2xs py-6 flex items-center justify-center text-gray-700 cursor-pointer border-2 border-gray-300 hover:ring-1 hover:outline-none hover:border-blue-200 hover:ring-green-300 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:ring-0"
+      >
+        Sign in
+      </button>
+    </form>
+  </div>
 
-        </form>
+  <hr class="w-8/10 mx-auto border-t border-gray-300 my-7" />
 
-    </div>
+  <div class="text-left px-2">
+    <p class="text-base xl:text-lg text-gray-500 mb-4 font-medium">
+      Nu ai cont inca?
+      <a
+        href="/register"
+        class="font-medium text-blue-300 hover:text-blue-400 ml-1"
+        >Register</a
+      >
+    </p>
 
-    <hr class="w-8/10 mx-auto border-t border-gray-300 my-7">
-
-    <div class="text-left px-2">
-        <p class="text-base xl:text-lg text-gray-500 mb-4 font-medium">
-            Nu ai cont inca?
-            <a href="/register" class="font-medium text-blue-300 hover:text-blue-400 ml-1">Register</a>
-        </p>
-
-        <p class="text-base xl:text-lg text-gray-500 font-medium">
-            Ti-ai uitat parola?
-            <a href="/register" class="font-medium text-blue-300 hover:text-blue-400 hover:underline ml-1">Reset Password</a>
-        </p>
-    </div>
+    <p class="text-base xl:text-lg text-gray-500 font-medium">
+      Ti-ai uitat parola?
+      <a
+        href="/register"
+        class="font-medium text-blue-300 hover:text-blue-400 hover:underline ml-1"
+        >Reset Password</a
+      >
+    </p>
+  </div>
 </div>

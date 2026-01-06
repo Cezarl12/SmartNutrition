@@ -36,7 +36,7 @@ export class SnackBarComponent implements OnInit, OnDestroy {
         this.isVisible = true;
 
         this.cdr.detectChanges();
-        setTimeout(() => this.close(), 5000);
+        setTimeout(() => this.close(), 3000);
       }
     );
   }
@@ -44,5 +44,6 @@ export class SnackBarComponent implements OnInit, OnDestroy {
 
   public close(): void {
     this.isVisible = false;
+    this.cdr.detectChanges();
   }
 }

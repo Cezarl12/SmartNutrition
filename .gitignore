@@ -1,0 +1,21 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# .NET (Build artifacts)
+[Bb]in/
+[Oo]bj/
+
+# Angular & Node
+.angular/
+node_modules/
+dist/
+.sass-cache/
+connect.lock
+input.log
+
+# Altele
+.DS_Store

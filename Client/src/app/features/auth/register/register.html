@@ -1,222 +1,274 @@
-<div class="flex-col w-3/4 md:w-2/4  lg:w-1/3 2xl:w-1/4 m-auto mt-40">
-    <div class="px-2 flex items-center gap-x-5 mb-3 xl:mb-5">
-        <img src="logo.png" alt="logo" class="h-15 w-15 xl:h-20 xl:w-20">
-        <h1 class="text-2xl xl:text-4xl font-bold text-gray-800">Register</h1>
-    </div>
+<div class="flex-col w-3/4 md:w-2/4 lg:w-1/3 2xl:w-1/4 m-auto mt-30">
+  <div class="px-2 flex items-center gap-x-5 mb-3 xl:mb-5">
+    <img src="logo.png" alt="logo" class="h-15 w-15 xl:h-20 xl:w-20" />
+    <h1 class="text-2xl xl:text-4xl font-bold text-gray-800">Register</h1>
+  </div>
 
-    <div class="px-2 mb-5 xl:mb-8">
-     <p class="text-left text-gray-500 text-sm md:text-base font-medium">
-        Calculează-ți necesarul caloric și generează instant rețete bazate pe preferințele tale.</p>
-    </div>
+  <div class="px-2 mb-2 xl:mb-8">
+    <p class="text-left text-gray-500 text-sm md:text-base font-medium">
+      Calculează-ți necesarul caloric și generează instant rețete bazate pe
+      preferințele tale.
+    </p>
+  </div>
 
-    <div class="px-2 w-full">
-        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-            <!--Nume + Prenume -->
-            <div class="flex flex-col lg:flex-row gap-x-2 ">
-                <div class="flex items-center relative mb-4">
-                <div class="absolute top-50% left-2  bg-linear-to-l rounded-full h-10 w-10 xl:h-12 xl:w-12 flex items-center justify-center"
-                [ngClass]="{
+  <div class="px-2 w-full">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <!--Nume + Prenume -->
+      <div class="flex flex-col lg:flex-row gap-x-2">
+        <div class="flex items-center relative mb-4">
+          <div
+            class="absolute top-50% left-2 bg-linear-to-l rounded-full h-10 w-10 xl:h-12 xl:w-12 flex items-center justify-center"
+            [ngClass]="{
                     'from-green-100 via-teal-100 to-cyan-100':!firstName || !((firstName.dirty || firstName.touched) && firstName.invalid),   
                     'from-orange-200 via-pink-100 to-red-200':firstName && (firstName.dirty || firstName.touched) && firstName.invalid,
-                }">
-                        <i class="fa-solid fa-user text-gray-700 text-lg xl:text-xl"></i>
-                    </div>
-                    <input type="text" formControlName="firstName"  placeholder="First Name" class=" shadow-xs w-full bg-white py-3 px-3 rounded-full border-2 border-gray-300  pl-15 xl:pl-17 text-base  xl:text-lg text-gray-500
-                    focus:outline-none focus:ring-2 focus:shadow-md"
-                     [ngClass]="{
+                }"
+          >
+            <i class="fa-solid fa-user text-gray-700 text-lg xl:text-xl"></i>
+          </div>
+          <input
+            type="text"
+            formControlName="firstName"
+            placeholder="First Name"
+            class="shadow-xs w-full bg-white py-3 px-3 rounded-full border-2 border-gray-300 pl-15 xl:pl-17 text-base xl:text-lg text-gray-500 focus:outline-none focus:ring-2 focus:shadow-md"
+            [ngClass]="{
                     'focus:border-green-200  focus:ring-blue-200': !firstName || !((firstName.dirty || firstName.touched) && firstName.invalid), 
                     'border-red-300  focus:border-red-300  focus:ring-orange-200':firstName && (firstName.dirty || firstName.touched) && firstName.invalid,
-                }">
-                </div>
+                }"
+          />
+        </div>
 
-                <div class="flex md:hidden">
-                           @if (firstName && firstName.invalid && (firstName.dirty || firstName.touched)) {
-                <div class="text-red-400 text-base pl-5 -mt-4">
-                    @if (firstName.hasError('required')) {
-                    <p>Prenumele este obligatoriu.</p>
-                    }
-                </div>
-                }
+        <div class="flex md:hidden">
+          @if (firstName && firstName.invalid && (firstName.dirty ||
+          firstName.touched)) {
+          <div class="text-red-400 text-base pl-5 -mt-4">
+            @if (firstName.hasError('required')) {
+            <p>Prenumele este obligatoriu.</p>
+            }
+          </div>
+          }
+        </div>
 
-            </div>
-
-                <div class="flex items-center relative mb-4">
-                    <div class="absolute top-50% left-2  bg-linear-to-l rounded-full h-10 w-10 xl:h-12 xl:w-12 flex items-center justify-center"
-                [ngClass]="{
+        <div class="flex items-center relative mb-4">
+          <div
+            class="absolute top-50% left-2 bg-linear-to-l rounded-full h-10 w-10 xl:h-12 xl:w-12 flex items-center justify-center"
+            [ngClass]="{
                     'from-green-100 via-teal-100 to-cyan-100':!lastName || !((lastName.dirty || lastName.touched) && lastName.invalid),   
                     'from-orange-200 via-pink-100 to-red-200':lastName && (lastName.dirty || lastName.touched) && lastName.invalid,
-                }">
-                        <i class="fa-solid fa-user text-gray-700 text-lg xl:text-xl"></i>
-                    </div>
-                    <input type="text" formControlName="lastName" placeholder="Last Name" class=" shadow-xs w-full bg-white py-3 px-3 rounded-full border-2 border-gray-300 pl-15 xl:pl-17 text-base xl:text-lg text-gray-500
-                    focus:outline-none focus:ring-2 focus:ring-blue-200 focus:shadow-md focus:border-green-200"
-                     [ngClass]="{
+                }"
+          >
+            <i class="fa-solid fa-user text-gray-700 text-lg xl:text-xl"></i>
+          </div>
+          <input
+            type="text"
+            formControlName="lastName"
+            placeholder="Last Name"
+            class="shadow-xs w-full bg-white py-3 px-3 rounded-full border-2 border-gray-300 pl-15 xl:pl-17 text-base xl:text-lg text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-200 focus:shadow-md focus:border-green-200"
+            [ngClass]="{
                     'focus:border-green-200  focus:ring-blue-200': !lastName || !((lastName.dirty || lastName.touched) && lastName.invalid), 
                     'border-red-300  focus:border-red-300  focus:ring-orange-200':lastName && (lastName.dirty || lastName.touched) && lastName.invalid,
-                }">
-                </div>
-            </div>
-            <div class="hidden md:block">
-                           @if (firstName && firstName.invalid && (firstName.dirty || firstName.touched)) {
-                <div class="text-red-400 text-base pl-5 -mt-4">
-                    @if (firstName.hasError('required')) {
-                    <p>Prenumele este obligatoriu.</p>
-                    }
-                </div>
-                }
+                }"
+          />
+        </div>
+      </div>
+      <div class="hidden md:block">
+        @if (firstName && firstName.invalid && (firstName.dirty ||
+        firstName.touched)) {
+        <div class="text-red-400 text-base pl-5 -mt-4">
+          @if (firstName.hasError('required')) {
+          <p>Prenumele este obligatoriu.</p>
+          }
+        </div>
+        }
+      </div>
 
-            </div>
-
-
-            @if (lastName && lastName.invalid && (lastName.dirty || lastName.touched)) {
-            <div class="text-red-400 text-base pl-5"
-            [ngClass]="{
-                '-mt-4 md:mt-1':firstName && firstName.invalid && (firstName.dirty || firstName.touched),
-                '-mt-5':!(firstName && firstName.invalid && (firstName.dirty || firstName.touched))
-            }">
-                @if (lastName.hasError('required')) {
-                <p>Numele este obligatoriu.</p>
-                }
-            </div>
-            }
-        <!-- Email -->
-        <div class="flex items-center relative mb-4">
-               <div class="absolute top-50% left-2  bg-linear-to-l rounded-full h-10 w-10 xl:h-12 xl:w-12 flex items-center justify-center"
-                [ngClass]="{
+      @if (lastName && lastName.invalid && (lastName.dirty || lastName.touched))
+      {
+      <div
+        class="text-red-400 text-base pl-5"
+        [ngClass]="{
+          '-mt-4 md:mt-1':
+            firstName &&
+            firstName.invalid &&
+            (firstName.dirty || firstName.touched),
+          '-mt-5': !(
+            firstName &&
+            firstName.invalid &&
+            (firstName.dirty || firstName.touched)
+          )
+        }"
+      >
+        @if (lastName.hasError('required')) {
+        <p>Numele este obligatoriu.</p>
+        }
+      </div>
+      }
+      <!-- Email -->
+      <div class="flex items-center relative mb-4">
+        <div
+          class="absolute top-50% left-2 bg-linear-to-l rounded-full h-10 w-10 xl:h-12 xl:w-12 flex items-center justify-center"
+          [ngClass]="{
                     'from-green-100 via-teal-100 to-cyan-100':!email || !((email.dirty || email.touched) && email.invalid),   
                     'from-orange-200 via-pink-100 to-red-200':email && (email.dirty || email.touched) && email.invalid,
-                }">
-                    <i class="fa-solid fa-envelope text-gray-700 text-lg xl:text-xl"></i>
-                </div>
-                <input type="email" formControlName="email"  placeholder="Email address" class=" shadow-xs w-full bg-white py-3 px-3 rounded-full border-2 border-gray-300 pl-15 xl:pl-20 text-base xl:text-lg text-gray-500
-                focus:outline-none focus:ring-2  focus:shadow-md"
-                  [ngClass]="{
+                }"
+        >
+          <i class="fa-solid fa-envelope text-gray-700 text-lg xl:text-xl"></i>
+        </div>
+        <input
+          type="email"
+          formControlName="email"
+          placeholder="Email address"
+          class="shadow-xs w-full bg-white py-3 px-3 rounded-full border-2 border-gray-300 pl-15 xl:pl-20 text-base xl:text-lg text-gray-500 focus:outline-none focus:ring-2 focus:shadow-md"
+          [ngClass]="{
                     'focus:border-green-200  focus:ring-blue-200': !email || !((email.dirty || email.touched) && email.invalid), 
                     'border-red-300  focus:border-red-300  focus:ring-orange-200':email && (email.dirty || email.touched) && email.invalid,
-                }">
-        </div>
-         @if (email && email.invalid && (email.dirty || email.touched)) {
-                <div class="text-red-400 text-base pl-5 -mt-4">
-                    @if (email.hasError('required')) {
-                        <p>Adresa de email este obligatorie.</p>
-                    }
-                    @if (email.hasError('email')) {
-                        <p>Adresa de email nu este validă.</p>
-                    }
-                </div>
+                }"
+        />
+      </div>
+      @if (email && email.invalid && (email.dirty || email.touched)) {
+      <div class="text-red-400 text-base pl-5 -mt-4">
+        @if (email.hasError('required')) {
+        <p>Adresa de email este obligatorie.</p>
+        } @if (email.hasError('email')) {
+        <p>Adresa de email nu este validă.</p>
         }
+      </div>
+      }
 
-         <!-- Password -->
-        <div class="flex items-center relative mb-4">
-              <div class="absolute top-50% left-2  bg-linear-to-l rounded-full h-10 w-10 xl:h-12 xl:w-12 flex items-center justify-center"
-                [ngClass]="{
+      <!-- Password -->
+      <div class="flex items-center relative mb-4">
+        <div
+          class="absolute top-50% left-2 bg-linear-to-l rounded-full h-10 w-10 xl:h-12 xl:w-12 flex items-center justify-center"
+          [ngClass]="{
                     'from-green-100 via-teal-100 to-cyan-100':!password || !((password.dirty || password.touched) && password.invalid),   
                     'from-orange-200 via-pink-100 to-red-200':password && (password.dirty || password.touched) && password.invalid,
-                }">
-                    <i class="fa-solid fa-lock text-gray-700 text-lg xl:text-xl"></i>
-                </div>
-                <input  [type]="showPassword ? 'text' : 'password'"  formControlName="password" placeholder="Password" class="w-full  bg-white py-3 px-3 rounded-full border-2 border-gray-300 pl-15 xl:pl-20 text-base xl:text-lg text-gray-500
-                 focus:outline-none focus:ring-2  focus:shadow-md"
-                  [ngClass]="{
+                }"
+        >
+          <i class="fa-solid fa-lock text-gray-700 text-lg xl:text-xl"></i>
+        </div>
+        <input
+          [type]="showPassword ? 'text' : 'password'"
+          formControlName="password"
+          placeholder="Password"
+          class="w-full bg-white py-3 px-3 rounded-full border-2 border-gray-300 pl-15 xl:pl-20 text-base xl:text-lg text-gray-500 focus:outline-none focus:ring-2 focus:shadow-md"
+          [ngClass]="{
                     'focus:border-green-200  focus:ring-blue-200':!password || !((password.dirty || password.touched) && password.invalid), 
                     'border-red-300  focus:border-red-300  focus:ring-orange-200':password && (password.dirty || password.touched) && password.invalid,
-                }">
-                 <div class="absolute top-50% right-2 rounded-full  h-10 w-10 xl:h-12 xl:w-12 flex items-center justify-center cursor-pointer"   (click)="togglePasswordVisibility()">
-                    @if(showPassword){
-                    <i class="fa-solid fa-eye-slash text-gray-700 text-lg xl:text-xl"></i>
-                    }@else {
-                    <i class="fa-solid fa-eye  text-gray-700 text-lg xl:text-xl"></i>
-                    }
-                </div>
+                }"
+        />
+        <div
+          class="absolute top-50% right-2 rounded-full h-10 w-10 xl:h-12 xl:w-12 flex items-center justify-center cursor-pointer"
+          (click)="togglePasswordVisibility()"
+        >
+          @if(showPassword){
+          <i class="fa-solid fa-eye-slash text-gray-700 text-lg xl:text-xl"></i>
+          }@else {
+          <i class="fa-solid fa-eye text-gray-700 text-lg xl:text-xl"></i>
+          }
         </div>
-        @if (password && password.invalid && (password.dirty || password.touched)) {
-            <div class="text-red-400 text-base pl-5 -mt-4 space-y-1">
-                @if (password.hasError('required')) {
-                <p>Parola este obligatorie.</p>
-                }
+      </div>
+      @if (password && password.invalid && (password.dirty || password.touched))
+      {
+      <div class="text-red-400 text-base pl-5 -mt-4 space-y-1">
+        @if (password.hasError('required')) {
+        <p>Parola este obligatorie.</p>
+        } @if (password.hasError('PasswordTooShort')) {
+        <p>{{ password.getError("PasswordTooShort") }}</p>
+        } @if(password.hasError('PasswordRequiresLower')){
+        <p>{{ password.getError("PasswordTooShort") }}</p>
+        } @if (password.hasError('PasswordRequiresUpper')) {
+        <p>{{ password.getError("PasswordRequiresUpper") }}</p>
+        } @if (password.hasError('PasswordRequiresDigit')) {
+        <p>{{ password.getError("PasswordRequiresDigit") }}</p>
+        } @if (password.hasError('PasswordRequiresNonAlphanumeric')) {
+        <p>{{ password.getError("PasswordRequiresNonAlphanumeric") }}</p>
+        }
+      </div>
+      }
 
-                @if (password.hasError('PasswordTooShort')) {
-                <p>{{ password.getError('PasswordTooShort') }}</p>
-                }
-                @if(password.hasError('PasswordRequiresLower')){
-                    <p>{{ password.getError('PasswordTooShort') }}</p>
-                }
-
-                @if (password.hasError('PasswordRequiresUpper')) {
-                <p>{{ password.getError('PasswordRequiresUpper') }}</p>
-                }
-
-                @if (password.hasError('PasswordRequiresDigit')) {
-                <p>{{ password.getError('PasswordRequiresDigit') }}</p>
-                }
-
-                @if (password.hasError('PasswordRequiresNonAlphanumeric')) {
-                <p>{{ password.getError('PasswordRequiresNonAlphanumeric') }}</p>
-                }
-            </div>
-            }
-
-         <!--Confirm Password -->
-        <div class="flex items-center relative mb-4">
-              <div class="absolute top-50% left-2  bg-linear-to-l rounded-full h-10 w-10 xl:h-12 xl:w-12 flex items-center justify-center"
-                [ngClass]="{
+      <!--Confirm Password -->
+      <div class="flex items-center relative mb-4">
+        <div
+          class="absolute top-50% left-2 bg-linear-to-l rounded-full h-10 w-10 xl:h-12 xl:w-12 flex items-center justify-center"
+          [ngClass]="{
                     'from-green-100 via-teal-100 to-cyan-100': !confirmpassword || 
                     !((confirmpassword.dirty || confirmpassword.touched) && (confirmpassword.invalid || registerForm.hasError('passwordsDoNotMatch'))),     
                     'from-orange-200 via-pink-100 to-red-200':confirmpassword  && (((confirmpassword.dirty || confirmpassword.touched) && confirmpassword.invalid) || registerForm.hasError('passwordsDoNotMatch')),
-                }">
-                    <i class="fa-solid fa-lock text-gray-700 text-lg xl:text-xl"></i>
-                </div>
-                <input [type]="showConfirmPassword ? 'text' : 'password'" formControlName="confirmpassword"  placeholder="Confirm Password" class="w-full  bg-white py-3 px-3 rounded-full border-2 border-gray-300 pl-15 xl:pl-20 text-base xl:text-lg text-gray-500
-                focus:outline-none focus:ring-2  focus:shadow-md"
-                  [ngClass]="{
-                    'focus:border-green-200  focus:ring-blue-200': !confirmpassword || 
-                    !((confirmpassword.dirty || confirmpassword.touched) && (confirmpassword.invalid || registerForm.hasError('passwordsDoNotMatch'))),  
-                    'border-red-300  focus:border-red-300  focus:ring-orange-200':confirmpassword && 
-                    (confirmpassword.dirty || confirmpassword.touched) && (confirmpassword.invalid || registerForm.hasError('passwordsDoNotMatch'))
-                }">
-                <div class="absolute top-50% right-2 rounded-full  h-10 w-10 xl:h-12 xl:w-12 flex items-center justify-center cursor-pointer"  (click)="toggleConfirmPasswordVisibility()">
-                    @if(showConfirmPassword){
-                    <i class="fa-solid fa-eye-slash text-gray-700 text-lg xl:text-xl"></i>
-                    }@else {
-                    <i class="fa-solid fa-eye text-gray-700 text-lg xl:text-xl"></i>
-                    }
-                </div>
+                }"
+        >
+          <i class="fa-solid fa-lock text-gray-700 text-lg xl:text-xl"></i>
         </div>
+        <input
+          [type]="showConfirmPassword ? 'text' : 'password'"
+          formControlName="confirmpassword"
+          placeholder="Confirm Password"
+          class="w-full bg-white py-3 px-3 rounded-full border-2 border-gray-300 pl-15 xl:pl-20 text-base xl:text-lg text-gray-500 focus:outline-none focus:ring-2 focus:shadow-md"
+          [ngClass]="{
+            'focus:border-green-200  focus:ring-blue-200':
+              !confirmpassword ||
+              !(
+                (confirmpassword.dirty || confirmpassword.touched) &&
+                (confirmpassword.invalid ||
+                  registerForm.hasError('passwordsDoNotMatch'))
+              ),
+            'border-red-300  focus:border-red-300  focus:ring-orange-200':
+              confirmpassword &&
+              (confirmpassword.dirty || confirmpassword.touched) &&
+              (confirmpassword.invalid ||
+                registerForm.hasError('passwordsDoNotMatch'))
+          }"
+        />
+        <div
+          class="absolute top-50% right-2 rounded-full h-10 w-10 xl:h-12 xl:w-12 flex items-center justify-center cursor-pointer"
+          (click)="toggleConfirmPasswordVisibility()"
+        >
+          @if(showConfirmPassword){
+          <i class="fa-solid fa-eye-slash text-gray-700 text-lg xl:text-xl"></i>
+          }@else {
+          <i class="fa-solid fa-eye text-gray-700 text-lg xl:text-xl"></i>
+          }
+        </div>
+      </div>
 
-            @if (confirmpassword && confirmpassword.invalid && (confirmpassword.dirty || confirmpassword.touched)) {
-            <div class="text-red-400 text-base pl-5 -mt-4">
-            <p>Camp obligatoriu</p>
-            </div>
-        }
+      @if (confirmpassword && confirmpassword.invalid && (confirmpassword.dirty
+      || confirmpassword.touched)) {
+      <div class="text-red-400 text-base pl-5 -mt-4">
+        <p>Camp obligatoriu</p>
+      </div>
+      } @if (registerForm.hasError('passwordsDoNotMatch') &&
+      (confirmpassword?.dirty || confirmpassword?.touched)) {
+      <div class="text-red-400 text-base pl-5 -mt-4">
+        <p>Parolele nu se potrivesc.</p>
+      </div>
+      }
 
-          @if (registerForm.hasError('passwordsDoNotMatch') && (confirmpassword?.dirty || confirmpassword?.touched)) {
-            <div class="text-red-400 text-base pl-5 -mt-4">
-            <p>Parolele nu se potrivesc.</p>
-            </div>
-        }
+      <button
+        [disabled]="registerForm.invalid"
+        type="submit"
+        class="w-full rounded-full h-10 bg-linear-to-l from-green-100 via-teal-100 to-cyan-100 text-lg xl:text-xl font-medium shadow-2xs py-6 flex items-center justify-center text-gray-700 cursor-pointer border-2 border-gray-300 hover:ring-1 hover:outline-none hover:border-blue-200 hover:ring-green-300 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:ring-0"
+      >
+        Create account
+      </button>
+      <div class="mb-4 flex items-center mt-4">
+        <label class="relative flex items-center justify-center cursor-pointer">
+          <input type="checkbox" class="absolute w-0 h-0 opacity-0 peer" />
+          <div
+            class="relative w-5 h-5 flex items-center justify-center bg-white border-2 border-gray-300 rounded transition-all duration-150 peer-focus:ring-2 peer-focus:ring-emerald-200 peer-checked:bg-blue-300 peer-checked:border-green-200"
+          >
+            <i
+              class="fa-solid fa-check text-white peer-checked:text-gray-700 text-xs hidden peer-checked:block"
+            ></i>
+          </div>
+        </label>
 
-            <button [disabled]="registerForm.invalid" type="submit"  class="w-full rounded-full h-10 bg-linear-to-l from-green-100 via-teal-100 to-cyan-100 text-lg xl:text-xl 
-                font-medium shadow-2xs py-6 flex items-center justify-center text-gray-700 cursor-pointer border-2 border-gray-300 
-                hover:ring-1 hover:outline-none hover:border-blue-200 hover:ring-green-300
-                disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:ring-0">Create account</button>
-            <div class="mb-4 flex items-center mt-4">
-
-                <label class="relative flex items-center justify-center cursor-pointer">
-                    <input type="checkbox" class="absolute w-0 h-0 opacity-0 peer">
-                    <div class="relative w-5 h-5 flex items-center justify-center bg-white border-2 border-gray-300 rounded transition-all duration-150
-                                peer-focus:ring-2 peer-focus:ring-emerald-200 
-                                peer-checked:bg-blue-300 peer-checked:border-green-200">
-                            <i class="fa-solid fa-check text-white peer-checked:text-gray-700 text-xs hidden peer-checked:block"></i>
-                    </div>
-                </label>
-
-               <span class="text-base xl:text-lg text-gray-500 ml-2"> Sunt de acord cu 
-                    <a href="/termeni" class="font-medium text-blue-300 hover:text-blue-400 hover:underline">Termenii și Condițiile</a>
-                </span>
-            </div>
-            
-        </form>
-
-     </div>
-
+        <span class="text-base xl:text-lg text-gray-500 ml-2">
+          Sunt de acord cu
+          <a
+            href="/termeni"
+            class="font-medium text-blue-300 hover:text-blue-400 hover:underline"
+            >Termenii și Condițiile</a
+          >
+        </span>
+      </div>
+    </form>
+  </div>
 </div>

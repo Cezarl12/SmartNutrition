@@ -7,6 +7,16 @@ namespace Core.Services
     {
         public Target CalculateDailyTargets(ApplicationUser user)
         {
+            if (user.Height == 0 || user.Weight == 0 || user.Age == 0)
+            {
+                return new Target
+                {
+                    DailyKcal = 0,
+                    DailyProtein = 0,
+                    DailyCarbs = 0,
+                    DailyFat = 0
+                };
+            }
             double bmr = 0;
             if (user.Sex == Sex.Male)
             {

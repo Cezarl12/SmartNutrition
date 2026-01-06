@@ -30,7 +30,7 @@ export class Home {
       this.snackBar.error('Trebuie să fii autentificat pentru a genera un plan.')
       this.router.navigateByUrl('/account/login')
     }
-    if (!this.account()?.target) {
+    if (this.account()?.target?.dailyKcal === 0) {
       this.snackBar.error('Calculeaza-ti necesarul caloric inainte!')
       return
     }

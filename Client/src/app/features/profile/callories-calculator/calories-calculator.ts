@@ -44,12 +44,12 @@ export class CaloriesCalculator implements OnInit {
     const user = this.account();
     if (user) {
       this.profileForm.patchValue({
-        age: user.age,
-        sex: user.sex,
-        height: user.height,
-        weight: user.weight,
-        activityLevel: user.activityLevel,
-        goal: user.goal
+        age: user.age ? user.age : null,
+        sex: user.sex ? user.sex : null,
+        height: user.height ? user.height : null,
+        weight: user.weight ? user.weight : null,
+        activityLevel: user.activityLevel ? user.activityLevel : null,
+        goal: user.goal ? user.goal : null
       });
     }
   }
@@ -57,8 +57,8 @@ export class CaloriesCalculator implements OnInit {
   profileForm = this.fb.group({
     age: [null as number | null, [Validators.required, Validators.min(8), Validators.max(150)]],
     sex: [null as number | null, [Validators.required]],
-    height: [null as number | null, [Validators.required]],
-    weight: [null as number | null, [Validators.required]],
+    height: [null as number | null, [Validators.required, Validators.min(100)]],
+    weight: [null as number | null, [Validators.required, Validators.min(30)]],
     activityLevel: [null as number | null, [Validators.required]],
     goal: [null as number | null, [Validators.required]],
   });

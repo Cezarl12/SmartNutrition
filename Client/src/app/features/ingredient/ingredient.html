@@ -1,81 +1,100 @@
-<div class="bg-white/80 flex w-7/10 m-auto mt-40 px-30 py-10 rounded-2xl  justify-center flex-col shadow-2xl">
-    <h1 class="text-4xl text-center text-gray-800 font-medium">{{ingredientItem()?.name}}</h1>
-    <div class="flex flex-row mt-15 px-10 gap-x-10">
-        <div class="flex flex-col w-1/2">
-                <div>
-                    <img [src]="'ingredients/' + ingredientItem()?.imageUrl" alt="recipe" class="h-90 w-full shadow-xl">
-                </div>
-        </div>
-
-         <div class="flex justify-center w-1/2 ">
-            <div>
-                 <div class="w-70 h-60 mt-10">
-                    <app-pie-chart [data]="getPieChartForIngredient()"></app-pie-chart>
-                </div>
-
-                 <div class="flex flex-col gap-y-2 items-center mt-10">
-                        <div class="flex flex-row gap-x-2 items-center">
-                            <div class="rounded-full bg-yellow-500 h-3 w-3"></div>
-                            <p class="text-xl text-gray-700">Carbohridați/100g</p>
-                        </div>
-                        <div class="flex flex-row gap-x-2 items-center">
-                            <div class="rounded-full bg-purple-500 h-3 w-3"></div>
-                            <p class="text-xl text-gray-700">Proteine/100g</p>
-                        </div>
-                        <div class="flex flex-row gap-x-2 items-center">
-                            <div class="rounded-full bg-blue-400 h-3 w-3"></div>
-                            <p class="text-xl text-gray-700"> Grăsimi/100g</p>
-                        </div>
-                    </div>
-            </div>
-        </div>
+<div
+  class="bg-white/80 flex w-7/10 m-auto mt-40 px-20 py-10 rounded-2xl justify-center flex-col shadow-2xl"
+>
+  <h1 class="text-4xl text-center text-gray-800 font-medium">
+    {{ ingredientItem()?.name }}
+  </h1>
+  <div class="flex flex-row mt-15 px-10 gap-x-20">
+    <div class="flex flex-col w-1/2">
+      <div>
+        <img
+          [src]="'ingredients/' + ingredientItem()?.imageUrl"
+          alt="recipe"
+          class="h-90 w-full shadow-xl"
+        />
+      </div>
     </div>
 
+    <div class="flex justify-center w-1/2">
+      <div>
+        <div class="w-70 h-60 mt-10">
+          <app-pie-chart [data]="getPieChartForIngredient()"></app-pie-chart>
+        </div>
 
-    <div class="flex flex-row mt-20 px-10 gap-x-10">
-            <div class="flex flex-col w-1/2">
-                    <h2 class="text-3xl text-gray-800 font-medium text-center mb-3">Rețete cu {{ingredientItem()?.name}}</h2>
-                    @for (food of this.foods(); track food) {
-                    <div class="group flex flex-row mt-5 gap-x-4">
-                        <div>
-                            <img [routerLink]="['/food',food.id]" [src]="'foods/' + food.imageUrl" alt="food" 
-                            class="w-17 h-17 hover:cursor-pointer group-hover:shadow-2xl">
-                        </div>
-                        <div class="flex flex-col gap-x-2 ">
-                            <p [routerLink]="['/food',food.id]" class="text-lg hover:cursor-pointer group-hover:underline">{{food.name}}</p>
-                            <p class="font-bold text-lg">{{food.kcal}} kcal pe porție</p>
-                        </div>
-                    </div>
-                    }
-            </div>
-            <div class="flex flex-col self-start h-auto w-1/2 border border-gray-500 rounded-lg px-6 p-4 text-gray-800 shadow-xl">
-                <h2 class="text-3xl  font-medium">Valori Nutriționale</h2>
-                <p class="text-lg ">Pentru 100 de g de {{ingredientItem()?.name}}</p>
-                <div class="flex justify-between mt-5">
-                     <p class="text-lg ">Nutrienți</p>
-                    <p class="text-lg ">Valori</p>
-                </div>
-                <hr class="border-2 mt-1">
-                <div class="flex justify-between mt-3 mb-3">
-                     <p class="text-2xl font-medium ">Calorii</p>
-                    <p class="text-2xl font-medium ">{{ingredientItem()?.kcalPer100g}}</p>
-                </div>
-                <hr class="border-2">
-                <div class="flex justify-between mt-1 mb-1 text-gray-600">
-                     <p class="text-lg">Proteine</p>
-                     <p class="text-lg">{{ingredientItem()?.proteinPer100g}}g</p>
-                </div>
-                <hr class="text-gray-400">
-                 <div class="flex justify-between mt-1 mb-1 text-gray-600">
-                     <p class="text-lg">Carbohridați</p>
-                     <p class="text-lg">{{ingredientItem()?.carbsPer100g}}g</p>
-                </div>
-                <hr class="text-gray-400">
-                 <div class="flex justify-between mt-1 mb-1 text-gray-600">
-                     <p class="text-lg">Grăsimi</p>
-                     <p class="text-lg">{{ingredientItem()?.fatPer100g}}g</p>
-                </div>
-            </div>
+        <div class="flex flex-col gap-y-2 items-center mt-10">
+          <div class="flex flex-row gap-x-2 items-center">
+            <div class="rounded-full bg-yellow-500 h-3 w-3"></div>
+            <p class="text-xl text-gray-700">Carbohridați/100g</p>
+          </div>
+          <div class="flex flex-row gap-x-2 items-center">
+            <div class="rounded-full bg-purple-500 h-3 w-3"></div>
+            <p class="text-xl text-gray-700">Proteine/100g</p>
+          </div>
+          <div class="flex flex-row gap-x-2 items-center">
+            <div class="rounded-full bg-blue-400 h-3 w-3"></div>
+            <p class="text-xl text-gray-700">Grăsimi/100g</p>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+
+  <div class="flex flex-row mt-20 px-10 gap-x-10">
+    <div class="flex flex-col w-1/2">
+      <h2 class="text-3xl text-gray-800 font-medium text-center mb-3">
+        Rețete cu {{ ingredientItem()?.name }}
+      </h2>
+      @for (food of this.foods(); track food) {
+      <div class="group flex flex-row mt-5 gap-x-4">
+        <div>
+          <img
+            [routerLink]="['/food', food.id]"
+            [src]="'foods/' + food.imageUrl"
+            alt="food"
+            class="w-17 h-17 hover:cursor-pointer group-hover:shadow-2xl"
+          />
+        </div>
+        <div class="flex flex-col gap-x-2">
+          <p
+            [routerLink]="['/food', food.id]"
+            class="text-lg hover:cursor-pointer group-hover:underline"
+          >
+            {{ food.name }}
+          </p>
+          <p class="font-bold text-lg">{{ food.kcal }} kcal pe porție</p>
+        </div>
+      </div>
+      }
+    </div>
+    <div
+      class="flex flex-col self-start h-auto w-1/2 border border-gray-500 rounded-lg px-6 p-4 text-gray-800 shadow-xl"
+    >
+      <h2 class="text-3xl font-medium">Valori Nutriționale</h2>
+      <p class="text-lg">Pentru 100 de g de {{ ingredientItem()?.name }}</p>
+      <div class="flex justify-between mt-5">
+        <p class="text-lg">Nutrienți</p>
+        <p class="text-lg">Valori</p>
+      </div>
+      <hr class="border-2 mt-1" />
+      <div class="flex justify-between mt-3 mb-3">
+        <p class="text-2xl font-medium">Calorii</p>
+        <p class="text-2xl font-medium">{{ ingredientItem()?.kcalPer100g }}</p>
+      </div>
+      <hr class="border-2" />
+      <div class="flex justify-between mt-1 mb-1 text-gray-600">
+        <p class="text-lg">Proteine</p>
+        <p class="text-lg">{{ ingredientItem()?.proteinPer100g }}g</p>
+      </div>
+      <hr class="text-gray-400" />
+      <div class="flex justify-between mt-1 mb-1 text-gray-600">
+        <p class="text-lg">Carbohridați</p>
+        <p class="text-lg">{{ ingredientItem()?.carbsPer100g }}g</p>
+      </div>
+      <hr class="text-gray-400" />
+      <div class="flex justify-between mt-1 mb-1 text-gray-600">
+        <p class="text-lg">Grăsimi</p>
+        <p class="text-lg">{{ ingredientItem()?.fatPer100g }}g</p>
+      </div>
+    </div>
+  </div>
 </div>
-

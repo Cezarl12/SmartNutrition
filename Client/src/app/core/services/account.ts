@@ -35,6 +35,11 @@ export class Account {
     )
   }
 
+  register(register: any) {
+    return this.http.post(this.baseUrl + 'register', register)
+  }
+
+
   logOut() {
     const options = {
       withCredentials: true
@@ -43,9 +48,6 @@ export class Account {
     return this.http.post(this.baseUrl + 'logout', {}, options)
   }
 
-  register(register: any) {
-    return this.http.post(this.baseUrl + 'register', register)
-  }
 
   updateProfile(userInfo: User) {
     const options = {
